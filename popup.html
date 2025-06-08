@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Co-op Party Link Sharer</title>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: Arial, sans-serif; width: 380px; padding: 15px; font-size: 14px; display: flex; flex-direction: column; gap: 15px; background-color: #f0f2f5;}
+    .section { padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .section h4 { margin-top: 0; margin-bottom: 12px; color: #1c1e21; font-size: 16px; border-bottom: 1px solid #eee; padding-bottom: 8px;}
+    input[type="text"], input[type="url"] { width: calc(100% - 22px); margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; box-sizing: border-box;}
+    button { width: 100%; padding: 10px 15px; background-color: #1877f2; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: bold; transition: background-color 0.2s ease; }
+    button:hover { background-color: #166fe5; }
+    button:disabled { background-color: #bcc0c4; color: #777; cursor: not-allowed; }
+    button.secondary { background-color: #6c757d; }
+    button.secondary:hover { background-color: #5a6268; }
+    button.danger { background-color: #dc3545; }
+    button.danger:hover { background-color: #c82333; }
+    .status-message { font-size: 0.9em; margin-top: 10px; text-align: center; min-height: 1.2em; font-weight: bold; }
+    .success { color: #28a745; }
+    .error { color: #dc3545; }
+    .info { color: #007bff; } /* Zmenená farba pre info */
+    .hidden { display: none; }
+    #partyInfo strong, #sharedLinkInfo strong { word-break: break-all; color: #1877f2; }
+    .party-actions button, .link-actions button { margin-top: 8px; }
+    hr { border: none; border-top: 1px solid #eee; margin: 15px 0; }
+    .party-code-display {font-weight: bold; color: #1877f2; background-color: #e7f3ff; padding: 5px 8px; border-radius: 4px; display: inline-block; margin-left: 5px; }
+    .link-text { font-weight: normal; color: #333; }
+  </style>
+</head>
+<body>
+
+  <div id="partyManagementSection" class="section">
+    <h4>Párty Manažment</h4>
+    <div id="notInPartyView">
+      <input type="text" id="partyCodeInput" placeholder="Zadaj kód párty (napr. ABCD12)">
+      <button id="joinPartyButton">Pripojiť sa k Párty</button>
+      <p class="status-message" id="joinPartyStatus"></p>
+      <hr>
+      <button id="createPartyButton">Vytvoriť Novú Párty</button>
+      <p class="status-message" id="createPartyStatus"></p>
+    </div>
+
+    <div id="inPartyView" class="hidden">
+      <p id="partyInfo">Pripojený k párty: <span id="currentPartyCodeDisplay" class="party-code-display">N/A</span></p>
+      <div class="link-actions">
+        <input type="url" id="linkToShareInput" placeholder="Vlož link na zdieľanie (alebo aktuálny)">
+        <button id="shareLinkButton">Zdieľať Link v Párty</button>
+      </div>
+      <p class="status-message" id="shareLinkStatus"></p>
+      <hr>
+      <button id="leavePartyButton" class="danger">Opustiť Párty</button>
+    </div>
+  </div>
+
+  <div id="sharedLinkSection" class="section hidden">
+    <h4>Zdieľaný Link v Párty</h4>
+    <div id="sharedLinkInfo">
+      <p>Link: <strong id="receivedLinkText" class="link-text">Žiadny link nebol zdieľaný.</strong></p>
+    </div>
+    <div class="link-actions">
+      <button id="openSharedLinkButton" disabled>Otvoriť Zdieľaný Link</button>
+    </div>
+    <p class="status-message" id="openLinkStatus"></p>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
